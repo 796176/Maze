@@ -84,4 +84,8 @@ public class Maze {
 	public void handleInput(char in) {
 
 	}
+
+	private void generate() {
+
+	}
 }
