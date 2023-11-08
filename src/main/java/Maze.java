@@ -1,6 +1,14 @@
 import java.io.IOException;
 
 public class Maze {
+	private int MAZE_HEIGHT;
+	final private int DEFAULT_MAZE_HEIGHT = 15;
+	private int MAZE_WIDTH;
+	final private int DEFAULT_MAZE_WIDTH = 30;
+	private int[][] maze;
+	private int jonesPosition;
+	private String lastFrame;
+
 	public static void main(String[] args) throws IOException {
 		Maze globalMaze = new Maze();
 		globalMaze.configure(args);
