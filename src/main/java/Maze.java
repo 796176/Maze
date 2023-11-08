@@ -34,4 +34,16 @@ public class Maze {
 			}
 		}
 	}
+
+	public void configure(String[] args) {
+
+	}
+
+	public void render() {
+
+	}
+
+	public void handleInput(char in) {
+
+	}
 }
