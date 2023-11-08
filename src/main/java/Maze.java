@@ -60,7 +60,25 @@ public class Maze {
 	}
 
 	public void render() {
-
+		for (int row = 0; row < MAZE_HEIGHT; row++) {
+			for (int column = 0; column <= MAZE_WIDTH; column++) {
+				if (column == MAZE_WIDTH) {
+					System.out.print('\n');
+					continue;
+				}
+				switch (maze[row][column]) {
+					case 0:
+						System.out.print('#');
+						break;
+					case 1:
+						System.out.print(' ');
+						break;
+					case 2:
+						System.out.print('0');
+				}
+			}
+		}
+		System.out.println("end");
 	}
 
 	public void handleInput(char in) {
