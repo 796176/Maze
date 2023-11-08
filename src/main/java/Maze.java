@@ -18,10 +18,11 @@ public class Maze {
 		{
 			while (true) {
 				globalMaze.render();
+
 				try {
-					consoleInput = (char) System.in.read();
-				} catch (Exception ignore) {
-				}
+					consoleInput = (char) System.in.readNBytes(2)[0];
+				} catch (Exception ignore) {}
+
 				switch (consoleInput) {
 					case 'h':
 						System.out.println(
