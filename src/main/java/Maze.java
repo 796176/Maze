@@ -44,7 +44,19 @@ public class Maze {
 	}
 
 	public void configure(String[] args) {
+		if (args != null && args.length == 2) {
+			MAZE_HEIGHT = Integer.getInteger(args[0]);
+			MAZE_WIDTH = Integer.getInteger(args[1]);
 
+			if (MAZE_WIDTH >= 15 && MAZE_WIDTH <= 60 && MAZE_HEIGHT >= 15 && MAZE_HEIGHT <= 25) {
+				generate();
+				return;
+			}
+		}
+
+		MAZE_HEIGHT = DEFAULT_MAZE_HEIGHT;
+		MAZE_WIDTH = DEFAULT_MAZE_WIDTH;
+		generate();
 	}
 
 	public void render() {
