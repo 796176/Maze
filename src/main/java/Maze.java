@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Random;
 
 public class Maze {
 	private int MAZE_HEIGHT;
@@ -6,7 +7,7 @@ public class Maze {
 	private int MAZE_WIDTH;
 	final private int DEFAULT_MAZE_WIDTH = 30;
 	private int[][] maze;
-	private int jonesPosition;
+	private int[] jonesPosition;
 	private String lastFrame;
 
 	public static void main(String[] args) throws IOException {
@@ -87,6 +88,71 @@ public class Maze {
 	}
 
 	private void generate() {
+		maze = new int[MAZE_HEIGHT][MAZE_WIDTH];
+		int currentPosition[] = jonesPosition = buildEntrance();
+		int nextPosition[];
+
+		do {
+			do {
+				nextPosition = generateNextPassagePosition(currentPosition);
+			}while (isCorner(nextPosition));
+
+			currentPosition = nextPosition;
+			maze[currentPosition[0]][currentPosition[1]] = 1;
+		}while (!isBorder(currentPosition));
+
+		buildExit(currentPosition);
+	}
+
+	private int[] buildEntrance(){
+		maze[MAZE_HEIGHT / 2][MAZE_WIDTH / 2] = 1;
+		return new int[] {MAZE_HEIGHT / 2, MAZE_WIDTH / 2};
+	}
+
+	private boolean isBorder(int currentPosition[]){
+		return currentPosition[0] == 1 || currentPosition[0] == MAZE_HEIGHT - 2 ||
+				currentPosition[1] == 1 || currentPosition[1] == MAZE_WIDTH - 2;
+	}
+
+	private int[] generateNextPassagePosition(int[] currentPosition) {
+		Random random = new Random();
+		int position[] = new int[2];
+		do {
+			switch (random.nextInt(4)) {
+				case 0:
+					position[0] = currentPosition[0] - 1;
+					position[1] = currentPosition[1];
+					break;
+				case 1:
+					position[0] = currentPosition[0];
+					position[1] = currentPosition[1] + 1;
+					break;
+				case 2:
+					position[0] = currentPosition[0] + 1;
+					position[1] = currentPosition[1];
+					break;
+				case 3:
+					position[0] = currentPosition[0];
+					position[1] = currentPosition[1] - 1;
+					break;
+			}
+		} while (maze[position[0]][position[1]] == 1);
+		return position;
+	}
+
+	private boolean isCorner(int[] position){
+		return
+				maze[position[0] - 1][position[1]] +
+				maze[position[0]][position[1] + 1] +
+				maze[position[0] + 1][position[1]] +
+				maze[position[0]][position[1] - 1] > 1;
+	}
+
+	private void buildExit(int[] position) {
+		if (position[0] == 1) maze[0][position[1]] = 1;
+		else if (position[0] == MAZE_HEIGHT - 2) maze[MAZE_HEIGHT - 1][position[1]] = 1;
+		else if (position[1] == 1) maze[position[0]][0] = 1;
+		else maze[position[0]][MAZE_WIDTH - 1] = 1;
 
 	}
 }
