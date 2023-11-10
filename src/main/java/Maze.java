@@ -68,6 +68,12 @@ public class Maze {
 					System.out.print('\n');
 					continue;
 				}
+
+				if (column == jonesPosition[1] && row == jonesPosition[0]) {
+					System.out.print('0');
+					continue;
+				}
+
 				switch (maze[row][column]) {
 					case 0:
 						System.out.print('#');
@@ -75,8 +81,6 @@ public class Maze {
 					case 1:
 						System.out.print(' ');
 						break;
-					case 2:
-						System.out.print('0');
 				}
 			}
 		}
