@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Maze {
@@ -88,7 +89,31 @@ public class Maze {
 	}
 
 	public void handleInput(char in) {
+		int []allowed_chars = {'a', 'd', 'h', 'j', 'k', 'l', 's', 'w'};
+		if (Arrays.binarySearch(allowed_chars, (int)in) < 0) {
+			System.out.println(lastFrame);
+			return;
+		}
+		boolean isPositionChanged;
+		switch (in){
+			case 'w':
+			case 'k':
+				isPositionChanged = moveUP();
+				break;
+			case 'd':
+			case 'l':
+				isPositionChanged = moveRight();
+				break;
+			case 's':
+			case 'j':
+				isPositionChanged = moveDown();
+				break;
+			default:
+				isPositionChanged = moveLeft();
+				break;
+		}
 
+		if (isPositionChanged) render(); else System.out.println(lastFrame);
 	}
 
 	private void generate() {
@@ -158,5 +183,29 @@ public class Maze {
 		else if (position[1] == 1) maze[position[0]][0] = 1;
 		else maze[position[0]][MAZE_WIDTH - 1] = 1;
 
+	}
+
+	private boolean moveUP() {
+		if (jonesPosition[0] == 0 || maze[jonesPosition[0] - 1][jonesPosition[1]] == 0) return false;
+		jonesPosition[0]--;
+		return true;
+	}
+
+	private boolean moveRight() {
+		if (jonesPosition[1] == MAZE_WIDTH - 1 || maze[jonesPosition[0]][jonesPosition[1] + 1] == 0) return false;
+		jonesPosition[1]++;
+		return true;
+	}
+
+	private boolean moveDown() {
+		if (jonesPosition[0] == MAZE_HEIGHT - 1 || maze[jonesPosition[0] + 1][jonesPosition[1]] == 0) return false;
+		jonesPosition[0]++;
+		return true;
+	}
+
+	private boolean moveLeft() {
+		if (jonesPosition[1] == 0 || maze[jonesPosition[0]][jonesPosition[1] - 1] == 0) return false;
+		jonesPosition[1]--;
+		return true;
 	}
 }
