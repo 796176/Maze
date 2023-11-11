@@ -26,9 +26,9 @@ public class Maze {
 				} catch (Exception ignore) {}
 
 				switch (consoleInput) {
-					case 'h':
+					case 'm':
 						System.out.println(
-								"h print this message\n" +
+								"m print this message\n" +
 								"q quit\n" +
 								"s or j go down\n" +
 								"w or k go up\n" +
