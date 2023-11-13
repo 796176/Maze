@@ -16,6 +16,16 @@ public class Maze {
 		globalMaze.configure(args);
 		char consoleInput = 'q';
 
+		System.out.println(
+				"m print this message\n" +
+				"q quit\n" +
+				"r re-generate the maze\n" +
+				"s or j go down\n" +
+				"w or k go up\n" +
+				"a or h go left\n" +
+				"d or l go right"
+		);
+
 		while_loop:
 		{
 			while (true) {
