@@ -30,6 +30,7 @@ public class Maze {
 						System.out.println(
 								"m print this message\n" +
 								"q quit\n" +
+								"r re-generate the maze" +
 								"s or j go down\n" +
 								"w or k go up\n" +
 								"a or h go left\n" +
@@ -38,6 +39,8 @@ public class Maze {
 						break;
 					case 'q':
 						break while_loop;
+					case 'r':
+						globalMaze.configure(args);
 					default:
 						globalMaze.handleInput(consoleInput);
 						break;
