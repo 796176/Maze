@@ -90,8 +90,8 @@ public class Maze {
 	}
 
 	public void handleInput(char in) {
-		int []allowed_chars = {'a', 'd', 'h', 'j', 'k', 'l', 's', 'w'};
-		if (Arrays.binarySearch(allowed_chars, (int)in) < 0) {
+		char []allowed_chars = {'a', 'd', 'h', 'j', 'k', 'l', 's', 'w'};
+		if (Arrays.binarySearch(allowed_chars, in) < 0) {
 			System.out.println(lastFrame);
 			return;
 		}
