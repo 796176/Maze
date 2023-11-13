@@ -40,7 +40,7 @@ public class Maze {
 						System.out.println(
 								"m print this message\n" +
 								"q quit\n" +
-								"r re-generate the maze" +
+								"r re-generate the maze\n" +
 								"s or j go down\n" +
 								"w or k go up\n" +
 								"a or h go left\n" +
