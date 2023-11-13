@@ -9,7 +9,7 @@ public class Maze {
 	final private int DEFAULT_MAZE_WIDTH = 30;
 	private int[][] maze;
 	private int[] jonesPosition;
-	private String lastFrame;
+	private String lastFrame = "";
 
 	public static void main(String[] args) throws IOException {
 		Maze globalMaze = new Maze();
@@ -63,29 +63,30 @@ public class Maze {
 	}
 
 	public void render() {
+		lastFrame = "";
 		for (int row = 0; row < MAZE_HEIGHT; row++) {
 			for (int column = 0; column <= MAZE_WIDTH; column++) {
 				if (column == MAZE_WIDTH) {
-					System.out.print('\n');
+					lastFrame += '\n';
 					continue;
 				}
 
 				if (column == jonesPosition[1] && row == jonesPosition[0]) {
-					System.out.print('0');
+					lastFrame += '0';
 					continue;
 				}
 
 				switch (maze[row][column]) {
 					case 0:
-						System.out.print('#');
+						lastFrame += '#';
 						break;
 					case 1:
-						System.out.print(' ');
+						lastFrame += ' ';
 						break;
 				}
 			}
 		}
-		System.out.println("end");
+		System.out.println(lastFrame);
 	}
 
 	public void handleInput(char in) {
